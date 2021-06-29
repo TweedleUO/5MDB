@@ -25,10 +25,10 @@ mkdir /home/pi/code/5MDB/playled/
 
 4. If you customized your path or GPIO pin, update the variables:
 ```python
-button = Button({YOUR GPIO PIN #})
-alert = {YOUR PATH/alarm.wav}
-song_folder = {YOUR SONG FOLDER PATH}
-played_folder = {YOUR PLAYED FOLDER PATH}
+button = Button(YOUR_GPIO_PIN_NUMBER)
+alert = YOUR_PATH/alarm.wav
+song_folder = YOUR_SONG_FOLDER_PATH
+played_folder = YOUR_PLAYED_FOLDER_PATH
 ```
 
 5. Execute dance.py, or add the following to rc.local to run it at startup:
