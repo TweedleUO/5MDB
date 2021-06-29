@@ -1,6 +1,6 @@
-# Five Minute Dance Break
+# 5 Minute Dance Break
 
-5MDB is a part of Apox Wow camp bondage.  
+5MDB is an effort to foster bonding and belonging in the Apocalypse Wow Burning Man camp. 
 
 It runs on a raspberry pi and uses a physical button to trigger an alarm, then plays a song from a playlist.
 
