@@ -1,0 +1,2 @@
+pygame~=1.9.6
+gpiozero~=1.6.2
