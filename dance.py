@@ -9,9 +9,9 @@ from gpiozero import Button
 
 pygame.mixer.init()
 button = Button(10)
-alert = '/home/pi/code/5MDB/alarm.wav'
-song_folder = '/home/pi/code/5MDB/playlist/'
-played_folder = '/home/pi/code/5MDB/played/'
+alert = '/home/pi/5MDB/alarm.wav'
+song_folder = '/home/pi/5MDB/playlist/'
+played_folder = '/home/pi/5MDB/played/'
 media_status = None
 # i is used as our global index value for iterating through our playlist object
 i = 0
@@ -20,7 +20,7 @@ i = 0
 # Function creates a new playlist object from a location it is passed, defaults to local storage location
 # We use glob to identify .mp3 files in specified location and store filenemes in a list
 # Randomize the list so iteration isn't predictable
-def build_playlist(upcoming='/home/pi/code/5MDB/playlist/'):
+def build_playlist(upcoming='/home/pi/5MDB/playlist/'):
     pl = [mp3 for mp3 in glob.glob(upcoming + "*.mp3", recursive=True)]
     random.shuffle(pl)
     return pl
@@ -61,8 +61,8 @@ def store_path():
         song_folder = s_folder[0]
     # No usb drive locations detected, revert to local storage location
     else:
-        song_folder = '/home/pi/code/5MDB/playlist/'
-        played_folder = '/home/pi/code/5MDB/played/'
+        song_folder = '/home/pi/5MDB/playlist/'
+        played_folder = '/home/pi/5MDB/played/'
     if validator == song_folder:
         print('No Change', song_folder)
         return
@@ -78,7 +78,7 @@ def location_handler():
     global i
     global playlist
     # This condition is tiggered when we are on local storage and a usb storage location is detected
-    if check_removable_media() and song_folder == '/home/pi/code/5MDB/playlist/':
+    if check_removable_media() and song_folder == '/home/pi/5MDB/playlist/':
         print('new media detected, updating')
         store_path()
         playlist = build_playlist(song_folder)
@@ -92,7 +92,7 @@ def location_handler():
         print('now reading from external drive')
         return
     # If usb drive is removed, revert back to local storage.
-    elif not check_removable_media() and song_folder != '/home/pi/code/5MDB/playlist/':
+    elif not check_removable_media() and song_folder != '/home/pi/5MDB/playlist/':
         print('media removed, updating')
         store_path()
         playlist = build_playlist(song_folder)
@@ -103,7 +103,7 @@ def location_handler():
         print('now reading from local drive')
         return
     # Console feedback for current media source
-    if song_folder != '/home/pi/code/5MDB/playlist/':
+    if song_folder != '/home/pi/5MDB/playlist/':
         print('media source USB')
     else:
         print('media source local')

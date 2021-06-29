@@ -7,23 +7,24 @@ It runs on a raspberry pi and uses a physical button to trigger an alarm, then p
 Playlists can be generated from .mp3s loaded locally on the device or from a flash drive.
 ## Installation
 Raspbian comes pre-loaded with pygame and GPIO Zero.  If you need to install them on a different distro or want more information see dependency section at the end of README
-1. Create the following folders (or your own custom folders):
-```bash
-mkdir /home/pi/code/5MDB/
-```
-```bash
-mkdir /home/pi/code/5MDB/playlist/
-```
-```bash
-mkdir /home/pi/code/5MDB/playled/
-```
-2. Wire a button to your GPIO 10 pin (or any available pin)
-   
+1. Download the latest release zip file from release tab
 
-3. Copy dance.py and alarm.wav to your .../5MDB/ folder
-   
 
-4. If you customized your path or GPIO pin, update the variables:
+2. Unzip folder in your home directory ~/ (/home/pi/)
+note: if your user is not `pi` then update the variables in step 6 accordingly.
+
+
+3. Wire a button to GPIO pin 10
+
+Optional:
+4. For use with a flash drive create a 5MDB folder at the root and then create a `playlist` and `played` subfolder. Load your mp3s into the `playlist` folder.
+
+
+5. To run 5MDB at startup add the following line to your rc.local:
+```bash
+python3 /home/pi/5MDB/dance.py &
+``` 
+6. To customize your instalation path or GPIO pin, update the variables:
 ```python
 button = Button(YOUR_GPIO_PIN_NUMBER)
 alert = YOUR_PATH/alarm.wav
@@ -31,24 +32,12 @@ song_folder = YOUR_SONG_FOLDER_PATH
 played_folder = YOUR_PLAYED_FOLDER_PATH
 ```
 
-5. Execute dance.py, or add the following to rc.local to run it at startup:
-```bash
-python3 /home/pi/code/5MDB/dance.py &
-```
-Optional:
-6. If using a flash drive create the following folders:
-```bash
-/5MDB/
-```
-```bash
-/5MDB/played
-```
-```bash
-/5MDB/playlist
-```
-In the final 'playlist' directory load all your .mp3 files
-
 ## Dependencies
+You may need to install usbmount if running this headless:
+```bash
+sudo apt-get install -y usbmount
+```
+
 To install pygame:
 ```bash
 python3 -m pip install pygame==1.9.6
